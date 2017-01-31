@@ -1,0 +1,19 @@
+{
+  "name": "dsm-activities",
+  "version": "1.0.0",
+  "description": "",
+  "main": "source/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
+    "mongoose": "^4.8.1"
+  },
+  "devDependencies": {
+    "jasmine": "^2.5.3"
+  }
+}
