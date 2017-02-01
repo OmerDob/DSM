@@ -3,6 +3,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const config = require('./config.service');
+
 let app = express();
 
 app.use(bodyParser.json());
@@ -17,6 +19,6 @@ app.get('/checkHealth', (req, res) => res.json({status: 200}));
 
 app.use('/', require('./activity.router'));
 
-app.listen(3030, 'localhost', () => {
-    console.log('activities service started on localhost:3030');
+app.listen(config.port, () => {
+    console.log(`activities service started on localhost:${config.port}`);
 });
