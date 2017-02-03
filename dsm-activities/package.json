@@ -2,9 +2,10 @@
   "name": "dsm-activities",
   "version": "1.0.0",
   "description": "",
-  "main": "source/index.js",
+  "main": "source/activity.service.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:local": "set NODE_ENV=local&& npm start",
+    "test": "jasmine"
   },
   "author": "",
   "license": "ISC",
