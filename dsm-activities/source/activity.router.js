@@ -2,34 +2,16 @@
 
 const express = require('express');
 
-const actionDefiner = require('./action-definer.service');
+const actionToMiddleware = require('./action-to-middleware.service');
 const activityController = require('./activity.controller');
 
 let activityRouter = express.Router();
 
-actionDefiner
-    .defineAction(activityRouter, {
-        action: activityController.getAllActivities,
-        method: 'get'
-    })
-    .defineAction(activityRouter, {
-        action: activityController.getActivityById,
-        method: 'get',
-        params: ['activityId']
-    })
-    .defineAction(activityRouter, {
-        action: activityController.createActivity,
-        method: 'post'
-    })
-    .defineAction(activityRouter, {
-        action: activityController.updateActivity,
-        method: 'put',
-        params: ['activityId']
-    })
-    .defineAction(activityRouter, {
-        action: activityController.deleteActivity,
-        method: 'delete',
-        params: ['activityId']
-    });
+activityRouter
+    .get('/', actionToMiddleware.toMiddleware(activityController.getAllActivities))
+    .get('/:id', actionToMiddleware.toMiddleware(activityController.getActivityById))
+    .post('/', actionToMiddleware.toMiddleware(activityController.createActivity))
+    .put('/:id', actionToMiddleware.toMiddleware(activityController.updateActivity))
+    .delete('/:id', actionToMiddleware.toMiddleware(activityController.deleteActivity));
 
 module.exports = activityRouter;

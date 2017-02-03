@@ -46,7 +46,7 @@ function ActivityController() {
 
     function deleteActivity(activityId) {
         return updateActivity(activityId, {isDeleted: true})
-            .then(doc => {success: true})
+            .then(doc => {return {success: true};})
             .catch(handleError);
     }
 
