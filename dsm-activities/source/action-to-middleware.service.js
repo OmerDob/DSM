@@ -7,13 +7,7 @@ function ActionToMiddleware() {
 
     _this.toMiddleware = toMiddleware;
 
-    function toMiddleware(config) {
-        let action = typeof config == 'function' ? config : config.action;
-
-        return buildMiddleware(action);
-    }
-
-    function buildMiddleware(action) {
+    function toMiddleware(action) {
         let middleware = (req, res, next) => {
             try {
                 req.actionResult = action.apply(null, getActionParams(req));

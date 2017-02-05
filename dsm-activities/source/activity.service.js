@@ -43,4 +43,6 @@ function ActivityService() {
             console.log(`Activities service started on localhost:${config.port}`);
         });
     }
+
+    ctor();
 }
