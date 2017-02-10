@@ -1,6 +1,6 @@
 describe('ActionToMiddleware', function () {
     var invokeMiddleware;
-    var _actionToMiddleware = require('../../source/action-to-middleware.service');
+    var _actionToMiddleware = require('../../../source/services/action-to-middleware.service');
     var _actionMock;
     var _reqMock;
     var _resMock;
@@ -11,12 +11,9 @@ describe('ActionToMiddleware', function () {
     beforeEach(() => {
         _resMock = {};
         _actionResultMock = 'action result';
+        _actionErrorMock = 'action error';
         _nextMock = jasmine.createSpy('next');
         _actionMock = jasmine.createSpy('action');
-
-        _actionErrorMock = {
-            error: 'action error'
-        };
 
         _reqMock = {
             route: {
@@ -71,7 +68,20 @@ describe('ActionToMiddleware', function () {
         buildMiddleware();
         invokeMiddleware();
 
-        expect(_reqMock.actionError).toEqual(_actionErrorMock);
+        expect(_reqMock.actionError).toEqual(new Error(_actionErrorMock));
+    });
+
+    testCases([
+        [configActionResult, 'action returns a result'],
+        [configActionError, 'action thorws an error']
+    ], (config, extraDescrition) => {
+        it('middleware should call next when ' + extraDescrition, () => {
+            config();
+            buildMiddleware();
+            invokeMiddleware();
+
+            expect(_nextMock).toHaveBeenCalled();
+        });
     });
 
     function buildMiddleware() {
