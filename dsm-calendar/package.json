@@ -1,8 +1,8 @@
 {
-  "name": "dsm-activities",
+  "name": "dsm-calendar",
   "version": "1.0.0",
   "description": "",
-  "main": "source/activity.service.js",
+  "main": "source/calendar.service.js",
   "scripts": {
     "start:local": "set NODE_ENV=local&& npm start",
     "test": "jasmine"

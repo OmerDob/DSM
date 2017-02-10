@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const dsmDb = require('./dsm.db');
+const dsmDb = require('../services/dsm.db');
 
 let activitySchema = new mongoose.Schema({
     name: {

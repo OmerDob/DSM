@@ -3,13 +3,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const config = require('./config.service');
-const requestLogger = require('./request-logger.middleware');
-const actionResult = require('./action-result.middleware');
+const config = require('./services/config.service');
+const requestLogger = require('./services/request-logger.middleware');
+const actionResult = require('./services/action-result.middleware');
+const activity = require('./activity');
 
-module.exports = new ActivityService();
+module.exports = new CalendarService();
 
-function ActivityService() {
+function CalendarService() {
     let _this = this;
 
     _this.start = start;
@@ -30,7 +31,7 @@ function ActivityService() {
 
     function setUpRouting() {
         _app.get('/checkHealth', (req, res) => res.json({status: 200}));
-        _app.use('/', require('./activity.router'));
+        _app.use('/activity', activity.router);
     }
 
     function setUpActionResultHandling() {

@@ -2,7 +2,7 @@
 
 const express = require('express');
 
-const actionToMiddleware = require('./action-to-middleware.service');
+const actionToMiddleware = require('../services/action-to-middleware.service');
 const activityController = require('./activity.controller');
 
 let activityRouter = express.Router();
