@@ -1,0 +1,4 @@
+[
+    "./source/dsm-calendar/dsm-calendar.module.js",
+    "./source/dsm-app.module.js"
+]
