@@ -4,7 +4,7 @@ angular.module('dsmApp').run(['$templateCache', function($templateCache) {
   $templateCache.put('./source/dsm-calendar/activity/activities-list/activities-list.html',
     "<div>\r" +
     "\n" +
-    "    <button>New Activity</button>\r" +
+    "    <button ng-click=\"ctrl.test()\">New Activity</button>\r" +
     "\n" +
     "</div>\r" +
     "\n" +
@@ -47,6 +47,23 @@ angular.module('dsmApp').run(['$templateCache', function($templateCache) {
     "    <span ng-if=\"ctrl.selectedActivity.location\">At: {{ctrl.selectedActivity.location}}<span><br>\r" +
     "\n" +
     "    <p style=\"white-space: pre;\">{{ctrl.selectedActivity.description}}</p>\r" +
+    "\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('./source/dsm-common/confirmation-modal/confirmation-modal.html',
+    "<div>\r" +
+    "\n" +
+    "    <span>{{ctrl.message}}</span>\r" +
+    "\n" +
+    "    <div>\r" +
+    "\n" +
+    "        <button ng-click=\"ctrl.ok()\">OK</button>\r" +
+    "\n" +
+    "        <button ng-click=\"ctrl.cancel()\">Cancel</button>\r" +
+    "\n" +
+    "    </div>\r" +
     "\n" +
     "</div>"
   );

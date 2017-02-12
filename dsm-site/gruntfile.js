@@ -10,9 +10,13 @@ module.exports = function (grunt) {
                 ],
                 dest: './bin/vendors.js'
             },
-            app: {
+            js: {
                 src: ['<%= appModules %>', './source/**/*.js'],
                 dest: './bin/dsm.app.js'
+            },
+            css: {
+                src: ['./source/**/*.css'],
+                dest: './bin/dsm.style.css'
             }
         },
         ngtemplates: {
@@ -48,7 +52,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-notify');
 
-    grunt.registerTask('build', ['concat:app', 'ngtemplates:app', 'notify:build']);
+    grunt.registerTask('build', ['concat:js', 'concat:css', 'ngtemplates:app', 'notify:build']);
     grunt.registerTask('build:full', ['concat:vendors', 'build']);
     grunt.registerTask('build:watch', ['watch:build']);
 };

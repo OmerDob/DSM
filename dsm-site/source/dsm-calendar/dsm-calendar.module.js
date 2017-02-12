@@ -1,5 +1,6 @@
 (function () {
     angular.module('dsmCalendar', [
-        'ngRoute'
+        'ngRoute',
+        'dsmCommon'
     ]);
 })();
