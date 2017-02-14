@@ -11,7 +11,7 @@
         function prompt(message) {
             var modalDeferred = $q.defer();
             var modal = modalService.create({
-                templateUrl: './source/dsm-common/confirmation-modal/confirmation-modal.html',
+                templateUrl: './source/dsm-common/modals/confirmation-modal/confirmation-modal.html',
                 controller: 'confirmationModalController',
                 controllerAs: 'ctrl',
                 resolve: {

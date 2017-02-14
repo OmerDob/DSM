@@ -1,5 +1,5 @@
 (function () {
     angular.module('dsmApp').component('dsmApp', {
-        template: '<div ng-view></div>'
+        templateUrl: './source/dsm-app.component.html'
     });
 })();

@@ -1,0 +1,9 @@
+<div class="dsm-notifications-bar">
+    <div
+        class="dsm-notification"
+        ng-class="notification.extraClasses"
+        ng-repeat="notification in ctrl.getNotifications()">
+        {{notification.message}}
+        <span ng-click="notification.close()" class="close">&times;</span>
+    </div>
+</div>

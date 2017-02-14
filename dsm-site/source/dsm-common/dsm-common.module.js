@@ -1,3 +1,5 @@
 (function () {
-    angular.module('dsmCommon', []);
+    angular.module('dsmCommon', [
+        'ngAnimate'
+    ]);
 })();

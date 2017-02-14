@@ -1,10 +1,21 @@
 angular.module('dsmApp').run(['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('./source/dsm-app.component.html',
+    "<div>\r" +
+    "\n" +
+    "    <notifications-bar></notifications-bar>\r" +
+    "\n" +
+    "    <div ng-view></div>\r" +
+    "\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('./source/dsm-calendar/activity/activities-list/activities-list.html',
     "<div>\r" +
     "\n" +
-    "    <button ng-click=\"ctrl.test()\">New Activity</button>\r" +
+    "    <button>New Activity</button>\r" +
     "\n" +
     "</div>\r" +
     "\n" +
@@ -24,7 +35,7 @@ angular.module('dsmApp').run(['$templateCache', function($templateCache) {
     "\n" +
     "<div ng-if=\"!ctrl.selectedActivity\">\r" +
     "\n" +
-    "    Selected an activity to view its details.\r" +
+    "    Select an activity to view its details.\r" +
     "\n" +
     "</div>\r" +
     "\n" +
@@ -52,7 +63,7 @@ angular.module('dsmApp').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('./source/dsm-common/confirmation-modal/confirmation-modal.html',
+  $templateCache.put('./source/dsm-common/modals/confirmation-modal/confirmation-modal.html',
     "<div>\r" +
     "\n" +
     "    <span>{{ctrl.message}}</span>\r" +
@@ -62,6 +73,27 @@ angular.module('dsmApp').run(['$templateCache', function($templateCache) {
     "        <button ng-click=\"ctrl.ok()\">OK</button>\r" +
     "\n" +
     "        <button ng-click=\"ctrl.cancel()\">Cancel</button>\r" +
+    "\n" +
+    "    </div>\r" +
+    "\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('./source/dsm-common/notifications/notifications-bar/notifications-bar.component.html',
+    "<div class=\"dsm-notifications-bar\">\r" +
+    "\n" +
+    "    <div\r" +
+    "\n" +
+    "        class=\"dsm-notification\"\r" +
+    "\n" +
+    "        ng-class=\"notification.extraClasses\"\r" +
+    "\n" +
+    "        ng-repeat=\"notification in ctrl.getNotifications()\">\r" +
+    "\n" +
+    "        {{notification.message}}\r" +
+    "\n" +
+    "        <span ng-click=\"notification.close()\" class=\"close\">&times;</span>\r" +
     "\n" +
     "    </div>\r" +
     "\n" +

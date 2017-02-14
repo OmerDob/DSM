@@ -1,5 +1,7 @@
 (function () {
-    angular.module('dsmCommon', []);
+    angular.module('dsmCommon', [
+        'ngAnimate'
+    ]);
 })();
 (function () {
     angular.module('dsmCalendar', [
@@ -9,24 +11,24 @@
 })();
 (function () {
     angular.module('dsmApp', [
+        'dsmCommon',
         'dsmCalendar'
     ]);
 })();
 (function () {
     angular.module('dsmApp').component('dsmApp', {
-        template: '<div ng-view></div>'
+        templateUrl: './source/dsm-app.component.html'
     });
 })();
 (function () {
     angular.module('dsmCalendar').controller('activitiesListController', ActivitiesListController);
 
-    ActivitiesListController.$inject = ['activityService', 'activities', 'confirmationModalService'];
+    ActivitiesListController.$inject = ['activityService', 'activities', 'confirmationModalService', 'notificationsService'];
 
-    function ActivitiesListController(activityService, activities, confirmationModalService) {
+    function ActivitiesListController(activityService, activities, confirmationModalService, notificationsService) {
         var _this = this;
 
         _this.deleteActivity = deleteActivity;
-        _this.test = test;
 
         function ctor() {
             _this.activities = activities;
@@ -39,13 +41,13 @@
                 .prompt('Are you sure you want to delete this activity?')
                 .then(() => activityService.deleteActivity(activityIdToRemove))
                 .then(() => {
+                    notificationsService.info({
+                        message: 'Activity has been removed.',
+                        expiry: 5000
+                    });
                     _this.selectedActivity = undefined;
                     _this.activities = _this.activities.filter(activity => activity._id != activityIdToRemove);
                 });
-        }
-
-        function test() {
-            confirmationModalService.prompt('hello confirmation');
         }
 
         ctor();
@@ -127,7 +129,7 @@
         function prompt(message) {
             var modalDeferred = $q.defer();
             var modal = modalService.create({
-                templateUrl: './source/dsm-common/confirmation-modal/confirmation-modal.html',
+                templateUrl: './source/dsm-common/modals/confirmation-modal/confirmation-modal.html',
                 controller: 'confirmationModalController',
                 controllerAs: 'ctrl',
                 resolve: {
@@ -202,5 +204,87 @@
         return {
             create: config => new Modal(config)
         };
+    }
+})();
+(function () {
+    angular.module('dsmCommon').component('notificationsBar', {
+        templateUrl: './source/dsm-common/notifications/notifications-bar/notifications-bar.component.html',
+        controller: 'notificationsBarController',
+        controllerAs: 'ctrl'
+    });
+})();
+(function () {
+    angular.module('dsmCommon').controller('notificationsBarController', NotificationBarController);
+
+    NotificationBarController.$inject = ['notificationsService'];
+
+    function NotificationBarController(notificationsService) {
+        var _this = this;
+
+        _this.getNotifications = notificationsService.getNotifications;
+    }
+})();
+(function () {
+    angular.module('dsmCommon').service('notificationsService', NotificationsService);
+
+    NotificationsService.$inject = ['$timeout'];
+
+    function NotificationsService($timeout) {
+        var _this = this;
+
+        _this.getNotifications = getNotifications;
+        _this.info = info;
+        _this.success = success;
+        _this.failure = failure;
+
+        var _notifications;
+        var _nextId;
+
+        const MAX_NOTIFICATIONS_NUM = 3;
+
+        function ctor() {
+            _notifications = [];
+            _nextId = 1;
+        }
+
+        function getNotifications() {
+            return _notifications;
+        }
+
+        function info(config) {
+            notify(angular.extend({extraClasses: ['info']}, config));
+        }
+
+        function failure(config) {
+            notify(angular.extend({extraClasses: ['failure']}, config));
+        }
+
+        function success(config) {
+            notify(angular.extend({extraClasses: ['success']}, config));
+        }
+
+        function notify(config) {
+            var notificationId = _nextId++;
+            var notification = angular.extend({
+                id: notificationId,
+                close: () => removeNotification(notificationId)
+            }, config);
+
+            _notifications.unshift(notification);
+
+            if (_notifications.length > MAX_NOTIFICATIONS_NUM) {
+                _notifications.pop();
+            }
+
+            if (notification.expiry) {
+                $timeout(notification.close, notification.expiry);
+            }
+        }
+
+        function removeNotification(notificationId) {
+            _notifications = _notifications.filter(notification => notification.id != notificationId);
+        }
+
+        ctor();
     }
 })();
