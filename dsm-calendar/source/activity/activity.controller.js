@@ -1,6 +1,7 @@
 'use strict';
 
 const activityModel = require('./activity.model');
+const activityDtoMapperService = require('./activity-dto-mapper.service');
 
 module.exports = new ActivityController();
 
@@ -14,39 +15,52 @@ function ActivityController() {
     _this.deleteActivity = deleteActivity;
 
     function getAllActivities() {
-        return activityModel
-            .find()
-            .notDeleted()
-            .exec()
-            .catch(handleError);
+        let query = activityModel.find();
+
+        return handleQuery(query, true);
     }
 
     function getActivityById(activityId) {
-        return activityModel
-            .findById(activityId)
-            .notDeleted()
-            .exec()
-            .catch(handleError);
+        let query = activityModel.findById(activityId);
+
+        return handleQuery(query);
     }
 
     function createActivity(activityData) {
         let newActivity = new activityModel(activityData);
+        let resultPromise = newActivity.save();
 
-        return newActivity
-            .save()
-            .catch(handleError);
+        return handleResultPromise(resultPromise);
     }
 
-    function updateActivity(activityId, activityData) {
-        return activityModel
-            .findByIdAndUpdate(activityId, activityData, {new: true})
+    function updateActivity(activityId, activityDto) {
+        let activity = activityDtoMapperService.backToBase(activityDto);
+        let resultPromise = activityModel
+            .findByIdAndUpdate(activityId, activity, {new: true})
             .exec()
-            .catch(handleError);
+        
+        return handleResultPromise(resultPromise);
     }
 
     function deleteActivity(activityId) {
-        return updateActivity(activityId, {isDeleted: true})
+        return activityModel
+            .findByIdAndUpdate(activityId, {isDeleted: true}, {new: true})
+            .exec()
             .then(doc => {return {success: true};})
+            .catch(handleError);
+    }
+
+    function handleQuery(query, multiResult) {
+        let resultPromise = query
+            .notDeleted()
+            .exec();
+        
+        return handleResultPromise(resultPromise, multiResult);
+    }
+
+    function handleResultPromise(resultPromise, multiResult) {
+        return resultPromise
+            .then(multiResult ? activityDtoMapperService.toDtos : activityDtoMapperService.toDto)
             .catch(handleError);
     }
 

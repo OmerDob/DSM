@@ -35,7 +35,7 @@
         }
 
         function deleteActivity() {
-            var activityIdToRemove = _this.selectedActivity._id;
+            var activityIdToRemove = _this.selectedActivity.id;
 
             confirmationModalService
                 .prompt('Are you sure you want to delete this activity?')
@@ -46,7 +46,7 @@
                         expiry: 5000
                     });
                     _this.selectedActivity = undefined;
-                    _this.activities = _this.activities.filter(activity => activity._id != activityIdToRemove);
+                    _this.activities = _this.activities.filter(activity => activity.id != activityIdToRemove);
                 });
         }
 
