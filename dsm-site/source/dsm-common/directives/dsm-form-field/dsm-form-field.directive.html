@@ -1,0 +1,9 @@
+<div ng-form="dsmFieldForm">
+    <label>{{fieldLabel}}</label>
+    <ng-transclude></ng-transclude>
+    <div ng-if="showError()">
+        <ng-messages for="dsmFieldForm.$error">
+            <ng-message ng-repeat="(key, value) in errorMessages" when="{{key}}">{{value}}</ng-message>
+        </ng-messages>
+    </div>
+</div>

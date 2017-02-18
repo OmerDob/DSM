@@ -1,5 +1,6 @@
 (function () {
     angular.module('dsmCommon', [
-        'ngAnimate'
+        'ngAnimate',
+        'ngMessages'
     ]);
 })();

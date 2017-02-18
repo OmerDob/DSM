@@ -1,5 +1,5 @@
 (function () {
-    angular.module('dsmCommon').factory('modalService', ModalFactory);
+    angular.module('dsmCommon').factory('modalFactory', ModalFactory);
 
     ModalFactory.$inject = ['$document', '$rootScope', '$compile', '$templateCache', '$controller'];
 

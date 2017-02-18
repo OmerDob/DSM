@@ -1,5 +1,5 @@
 <div>
-    <button>New Activity</button>
+    <button type="button" ng-click="ctrl.createActivity()">New Activity</button>
 </div>
 <div>
     <ul>
@@ -13,7 +13,7 @@
 </div>
 <div ng-if="ctrl.selectedActivity">
     <div>
-        <button>Edit</button>
+        <button ng-click="ctrl.editActivity(ctrl.selectedActivity)">Edit</button>
         <button ng-click="ctrl.deleteActivity()">Delete</button>
     </div>
     <span>Name: {{ctrl.selectedActivity.name}}</span><br>

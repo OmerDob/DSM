@@ -7,7 +7,8 @@ module.exports = function (grunt) {
                 src: [
                     './node_modules/angular/angular.js',
                     './node_modules/angular-route/angular-route.js',
-                    './node_modules/angular-animate/angular-animate.js'
+                    './node_modules/angular-animate/angular-animate.js',
+                    './node_modules/angular-messages/angular-messages.js'
                 ],
                 dest: './bin/vendors.js'
             },
@@ -31,7 +32,7 @@ module.exports = function (grunt) {
         },
         watch: {
             build: {
-                files: ['./source/**/*.*'],
+                files: ['source/**/*.*'],
                 tasks: ['build'],
                 options: {
                     spawn: false
@@ -45,6 +46,13 @@ module.exports = function (grunt) {
                     message: 'Build complete.'
                 }
             }
+        },
+        browserify: {
+            app: {
+                files: {
+                    './bin/dsm.app.js': ['./bin/dsm.app.js']
+                }
+            }
         }
     });
 
@@ -52,8 +60,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-notify');
+    grunt.loadNpmTasks('grunt-browserify');
 
-    grunt.registerTask('build', ['concat:js', 'concat:css', 'ngtemplates:app', 'notify:build']);
+    grunt.registerTask('build', ['concat:js', 'browserify:app', 'concat:css', 'ngtemplates:app', 'notify:build']);
     grunt.registerTask('build:full', ['concat:vendors', 'build']);
     grunt.registerTask('build:watch', ['watch:build']);
 };
