@@ -26,7 +26,7 @@ module.exports = function (grunt) {
                 options: {
                     module: 'dsmApp'
                 },
-                src: ['./source/**/*.html', './source/**/*.htm'],
+                src: ['./source/**/*.html', './source/**/*.htm', '!./source/index.html'],
                 dest: './bin/dsm.templates.js'
             }
         },
@@ -53,16 +53,23 @@ module.exports = function (grunt) {
                     './bin/dsm.app.js': ['./bin/dsm.app.js']
                 }
             }
+        },
+        copy: {
+            index: {
+                src: ['./source/index.html'],
+                dest: './bin/index.html'
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-notify');
     grunt.loadNpmTasks('grunt-browserify');
 
     grunt.registerTask('build', ['concat:js', 'browserify:app', 'concat:css', 'ngtemplates:app', 'notify:build']);
-    grunt.registerTask('build:full', ['concat:vendors', 'build']);
+    grunt.registerTask('build:full', ['concat:vendors', 'build', 'copy:index']);
     grunt.registerTask('build:watch', ['watch:build']);
 };

@@ -11,31 +11,34 @@
         _this.updateActivity = updateActivity;
         _this.deleteActivity = deleteActivity;
 
+        var _serviceUrl;
+
+        function ctor() {
+            _serviceUrl = 'http://localhost:3030/activity';
+        }
+
         function getAll() {
             return $http
-                .get('http://localhost:3030/activity')
-                .then(res => {
-                    res.data.forEach(fixDates);
-
-                    return res.data;
-                });
+                .get(_serviceUrl)
+                .then(res => res.data)
+                .then(activities => activities.map(fixDates));
         }
 
         function updateActivity(activity) {
             return $http
-                .put(`http://localhost:3030/activity/${activity.id}`, activity)
+                .put(`${_serviceUrl}/${activity.id}`, activity)
         }
 
         function createActivity(activityData) {
             return $http
-                .post(`http://localhost:3030/activity`, activityData)
+                .post(_serviceUrl, activityData)
                 .then(res => res.data)
                 .then(fixDates);
         }
 
         function deleteActivity(activityId) {
             return $http
-                .delete(`http://localhost:3030/activity/${activityId}`);
+                .delete(`${_serviceUrl}/${activityId}`);
         }
 
         function fixDates(activity) {
@@ -44,5 +47,7 @@
 
             return activity;
         }
+
+        ctor();
     }
 })();
