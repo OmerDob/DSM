@@ -10,15 +10,40 @@
 
 .dsm-modal-wrapper {
     position: relative;
-    margin: 15% auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: fit-content;
+    max-height: 90%;
+    overflow-y: auto;
     background: #fefefe;
     padding: 10px;
     border: 1px solid #888;
-    animation: enter-top 0.4s;
+    border-radius: 4px;
+    animation: modal-enter-top 0.4s;
 }
 
-@keyframes enter-top {
+.dsm-modal-wrapper .modal-header {
+    border-bottom: 2px solid;
+    border-image: linear-gradient(to right, #fefefe, #ababab, #fefefe) 1;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.dsm-modal-wrapper .modal-header h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.dsm-modal-wrapper .modal-header .close {
+    float: right;
+    cursor: pointer;
+    color: #ababab;
+}
+
+.dsm-modal-wrapper .modal-header .close:hover {color: #000;}
+
+@keyframes modal-enter-top {
     from {top: -300px; opacity: 0}
-    to {top: 0; opacity: 1}
+    to {top: 50%; opacity: 1}
 }

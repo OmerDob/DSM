@@ -1,4 +1,7 @@
-<div>
+<div id="activityModal">
+    <div class="modal-header">
+        <h1>Activity<span class="close" ng-click="ctrl.cancel()">&times;</span></h1>
+    </div>
     <form name="activityForm" novalidate ng-submit="ctrl.save()">
         <dsm-form-field
             label="Name:"
@@ -30,9 +33,9 @@
         <dsm-form-field label="Description:">
             <textarea id="activityDescription" ng-model="ctrl.activity.description"></textarea>
         </dsm-form-field>
-        <div>
-            <button type="submit" ng-disabled="!ctrl.canSave()">Save</button>
-            <button type="button" ng-click="ctrl.cancel()">Cancel</button>
+        <div class="form-footer">
+            <button class="default" type="submit" ng-disabled="!ctrl.canSave()">Save</button>
+            <button class="default cancel" type="button" ng-click="ctrl.cancel()">Cancel</button>
         </div>
     </form>
 </div>

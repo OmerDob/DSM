@@ -1,24 +1,26 @@
-<div>
-    <button type="button" ng-click="ctrl.createActivity()">New Activity</button>
-</div>
-<div>
-    <ul>
-        <li ng-repeat="activity in ctrl.activities">
-            <a href ng-click="ctrl.selectedActivity = activity">{{activity.name}}</a>
-        </li>
-    </ul>
-</div>
-<div ng-if="!ctrl.selectedActivity">
-    Select an activity to view its details.
-</div>
-<div ng-if="ctrl.selectedActivity">
-    <div>
-        <button ng-click="ctrl.editActivity(ctrl.selectedActivity)">Edit</button>
-        <button ng-click="ctrl.deleteActivity()">Delete</button>
+<div id="activitiesList" class="container">
+    <div class="activities-toolbar">
+        <button type="button" class="default" ng-click="ctrl.createActivity()">New Activity</button>
     </div>
-    <span>Name: {{ctrl.selectedActivity.name}}</span><br>
-    <span>Starts at: {{ctrl.selectedActivity.startDate | date:'dd/MM/yyyy - hh:mm'}}</span><br>
-    <span>Ends at: {{ctrl.selectedActivity.endDate | date:'dd/MM/yyyy - hh:mm'}}</span><br>
-    <span ng-if="ctrl.selectedActivity.location">At: {{ctrl.selectedActivity.location}}<span><br>
-    <p style="white-space: pre;">{{ctrl.selectedActivity.description}}</p>
+    <div class="side-list">
+        <ul>
+            <li ng-repeat="activity in ctrl.activities" ng-class="{'active': activity == ctrl.selectedActivity}">
+                <a href ng-click="ctrl.selectedActivity = activity">{{activity.name}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="activity-details" ng-if="!ctrl.selectedActivity">
+        Select an activity to view its details.
+    </div>
+    <div class="activity-details" ng-if="ctrl.selectedActivity">
+        <div class="activity-toolbar">
+            <button class="default" ng-click="ctrl.editActivity(ctrl.selectedActivity)">Edit</button>
+            <button class="danger" ng-click="ctrl.deleteActivity()">Delete</button>
+        </div>
+        <span><b>Name:</b> {{ctrl.selectedActivity.name}}</span><br>
+        <span><b>Starts at:</b> {{ctrl.selectedActivity.startDate | date:'dd/MM/yyyy - HH:mm'}}</span><br>
+        <span><b>Ends at:</b> {{ctrl.selectedActivity.endDate | date:'dd/MM/yyyy - HH:mm'}}</span><br>
+        <span ng-if="ctrl.selectedActivity.location"><b>At:</b> {{ctrl.selectedActivity.location}}<span><br>
+        <p style="white-space: pre;">{{ctrl.selectedActivity.description}}</p>
+    </div>
 </div>

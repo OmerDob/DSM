@@ -1,0 +1,20 @@
+#activityModal {
+    width: 60vw;
+}
+
+#activityStartDate,
+#activityStartTime,
+#activityEndDate,
+#activityEndTime {
+    width: 50%;
+}
+
+#activityStartTime,
+#activityEndTime,
+#activityModal .form-footer button.cancel {
+    float: right;
+}
+
+#activityModal .form-footer button {
+    width: 50%;
+}

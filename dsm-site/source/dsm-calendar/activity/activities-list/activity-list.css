@@ -1,0 +1,45 @@
+#activitiesList .activities-toolbar {
+    margin-bottom: 10px;
+}
+
+#activitiesList .side-list {
+    width: 20%;
+    float: left;
+}
+
+#activitiesList .side-list ul {
+    margin: 0;
+    padding: 0;
+}
+
+#activitiesList .side-list li {
+    list-style: none;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(to right, #fefefe, #ababab, #fefefe) 1;
+    padding: 10px;
+    text-align: center;
+}
+
+#activitiesList .side-list li:last-child {border-bottom: 0;}
+
+#activitiesList .side-list li a {
+    color: #4286f4;
+    text-decoration: none;
+}
+
+#activitiesList .side-list li.active {background: #4286f4}
+#activitiesList .side-list li.active a {color: #fff}
+
+#activitiesList .activity-details {
+    width: 80%;
+    height: 80vh;
+    padding: 10px;
+    float: right;
+    border: #7b7b7b solid 1px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#activitiesList .activity-details .activity-toolbar {
+    float: right;
+}
