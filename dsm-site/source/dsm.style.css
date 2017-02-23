@@ -36,6 +36,10 @@ textarea {
     margin-bottom: 16px;
 }
 
+textarea {
+    height: 150px;
+}
+
 form label {
     display: block;
 }

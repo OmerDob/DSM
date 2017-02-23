@@ -16,6 +16,8 @@
             function ctor() {
                 buildModalScope();
                 buildModalElement();
+
+                _modalScope.$on('$destroy', () => _modalElement.remove());
             }
 
             function show() {
@@ -25,7 +27,7 @@
             }
 
             function close() {
-                _modalElement.remove();
+                _modalScope.$destroy();
             }
 
             function buildModalScope() {
@@ -43,13 +45,9 @@
 
             function buildModalElement() {
                 var modalTemplate = config.template || $templateCache.get(config.templateUrl);
-                var modalContent = $compile(modalTemplate)(_modalScope);
-                var modalWrapper = angular.element('<div class="dsm-modal-wrapper">');
 
-                _modalElement = angular.element('<div class="dsm-modal">');
-
-                modalWrapper.append(modalContent)
-                _modalElement.append(modalWrapper);
+                _modalElement = $compile(modalTemplate)(_modalScope);
+                _modalElement.addClass('dsm-modal');
             }
 
             ctor();

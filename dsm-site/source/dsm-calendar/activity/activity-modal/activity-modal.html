@@ -1,41 +1,43 @@
-<div id="activityModal">
-    <div class="modal-header">
-        <h1>Activity<span class="close" ng-click="ctrl.cancel()">&times;</span></h1>
-    </div>
-    <form name="activityForm" novalidate ng-submit="ctrl.save()">
-        <dsm-form-field
-            label="Name:"
-            error-messages="{
-                'required': 'Activity name is required.'
-            }">
-            <input id="activityName" ng-model="ctrl.activity.name" required>
-        </dsm-form-field>
-        <dsm-form-field
-            label="Start date:"
-            error-messages="{
-                'required': 'Activity start date is required.'
-            }">
-            <input id="activityStartDate" type="date" ng-model="ctrl.activity.startDate" required>
-            <input id="activityStartTime" type="time" ng-model="ctrl.activity.startDate" required>
-        </dsm-form-field>
-        <dsm-form-field
-            label="End date:"
-            error-messages="{
-                'required': 'Activity end date is required',
-                'dateGt': 'Activity end date must be after the activity start date.'
-            }">
-            <input id="activityEndDate" type="date" ng-model="ctrl.activity.endDate" required date-gt="ctrl.activity.startDate">
-            <input id="activityEndTime" type="time" ng-model="ctrl.activity.endDate" required>
-        </dsm-form-field>
-        <dsm-form-field label="Location:">
-            <input id="activityLocation" ng-model="ctrl.activity.location">
-        </dsm-form-field>
-        <dsm-form-field label="Description:">
-            <textarea id="activityDescription" ng-model="ctrl.activity.description"></textarea>
-        </dsm-form-field>
-        <div class="form-footer">
-            <button class="default" type="submit" ng-disabled="!ctrl.canSave()">Save</button>
-            <button class="default cancel" type="button" ng-click="ctrl.cancel()">Cancel</button>
-        </div>
-    </form>
+<dsm-modal id="activityModal" on-close="ctrl.cancel()">
+    <modal-header>
+        <h1>Activity</h1>
+    </modal-header>
+    <modal-body>
+        <form name="activityForm" novalidate ng-submit="ctrl.save()">
+            <dsm-form-field
+                label="Name:"
+                error-messages="{
+                    'required': 'Activity name is required.'
+                }">
+                <input id="activityName" ng-model="ctrl.activity.name" required>
+            </dsm-form-field>
+            <dsm-form-field
+                label="Start date:"
+                error-messages="{
+                    'required': 'Activity start date is required.'
+                }">
+                <input id="activityStartDate" type="date" ng-model="ctrl.activity.startDate" required>
+                <input id="activityStartTime" type="time" ng-model="ctrl.activity.startDate" required>
+            </dsm-form-field>
+            <dsm-form-field
+                label="End date:"
+                error-messages="{
+                    'required': 'Activity end date is required',
+                    'dateGt': 'Activity end date must be after the activity start date.'
+                }">
+                <input id="activityEndDate" type="date" ng-model="ctrl.activity.endDate" required date-gt="ctrl.activity.startDate">
+                <input id="activityEndTime" type="time" ng-model="ctrl.activity.endDate" required>
+            </dsm-form-field>
+            <dsm-form-field label="Location:">
+                <input id="activityLocation" ng-model="ctrl.activity.location">
+            </dsm-form-field>
+            <dsm-form-field label="Description:">
+                <textarea id="activityDescription" ng-model="ctrl.activity.description"></textarea>
+            </dsm-form-field>
+        </form>
+    </modal-body>
+    <modal-footer>
+        <button class="default" type="submit" ng-disabled="!ctrl.canSave()">Save</button>
+        <button class="default cancel" type="button" ng-click="ctrl.cancel()">Cancel</button>
+    </modal-footer>
 </div>

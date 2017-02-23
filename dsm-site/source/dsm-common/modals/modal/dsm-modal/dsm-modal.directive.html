@@ -1,0 +1,8 @@
+<div class="dsm-modal-wrapper">
+    <div class="modal-header" ng-if="ctrl.hasPart('header')">
+        <span class="close" ng-click="ctrl.onClose()">&times;</span>
+        <ng-transclude ng-transclude-slot="header"></ng-transclude>
+    </div>
+    <div class="modal-body" ng-transclude="body"></div>
+    <div class="modal-footer" ng-transclude="footer" ng-if="ctrl.hasPart('footer')"></div>
+</div>

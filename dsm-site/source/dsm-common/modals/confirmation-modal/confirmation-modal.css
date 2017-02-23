@@ -1,0 +1,13 @@
+#confirmationModal .dsm-modal-wrapper {
+    max-width: 30vw;
+    font-size: 20px;
+}
+
+#confirmationModal .modal-footer {
+    overflow: auto;
+}
+
+#confirmationModal .modal-footer button {
+    float: right;
+    margin-left: 5px;
+}

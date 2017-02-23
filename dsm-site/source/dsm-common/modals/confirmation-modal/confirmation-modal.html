@@ -1,7 +1,9 @@
-<div id="confirmationModal">
-    <span>{{ctrl.message}}</span>
-    <div>
-        <button class="default" ng-click="ctrl.ok()">OK</button>
+<dsm-modal id="confirmationModal" on-close="ctrl.cancel()">
+    <modal-body>
+        <span>{{ctrl.message}}</span>
+    </modal-body>
+    <modal-footer>
         <button class="default" ng-click="ctrl.cancel()">Cancel</button>
-    </div>
-</div>
+        <button class="default" ng-click="ctrl.ok()">OK</button>
+    </modal-footer>
+</dsm-modal>

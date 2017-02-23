@@ -13,14 +13,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: fit-content;
     max-height: 90%;
-    overflow-y: auto;
     background: #fefefe;
     padding: 10px;
     border: 1px solid #888;
     border-radius: 4px;
     animation: modal-enter-top 0.4s;
+    overflow-y: initial;
 }
 
 .dsm-modal-wrapper .modal-header {
@@ -39,9 +38,21 @@
     float: right;
     cursor: pointer;
     color: #ababab;
+    font-size: 25px;
 }
 
 .dsm-modal-wrapper .modal-header .close:hover {color: #000;}
+
+.dsm-modal-wrapper .modal-body {
+    overflow-y: auto;
+}
+
+.dsm-modal-wrapper .modal-footer {
+    border-top: 2px solid;
+    border-image: linear-gradient(to right, #fefefe, #ababab, #fefefe) 1;
+    margin-top: 10px;
+    padding-top: 10px;
+}
 
 @keyframes modal-enter-top {
     from {top: -300px; opacity: 0}

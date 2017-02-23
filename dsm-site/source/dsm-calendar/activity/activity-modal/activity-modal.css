@@ -1,20 +1,24 @@
-#activityModal {
+#activityModal .dsm-modal-wrapper {
     width: 60vw;
 }
 
-#activityStartDate,
-#activityStartTime,
-#activityEndDate,
-#activityEndTime {
+#activityModal .dsm-modal-wrapper .modal-body {
+    max-height: 60vh;
+}
+
+#activityModal #activityStartDate,
+#activityModal #activityStartTime,
+#activityModal #activityEndDate,
+#activityModal #activityEndTime {
     width: 50%;
 }
 
-#activityStartTime,
-#activityEndTime,
-#activityModal .form-footer button.cancel {
+#activityModal #activityStartTime,
+#activityModal #activityEndTime,
+#activityModal .modal-footer button.cancel {
     float: right;
 }
 
-#activityModal .form-footer button {
+#activityModal .modal-footer button {
     width: 50%;
 }
