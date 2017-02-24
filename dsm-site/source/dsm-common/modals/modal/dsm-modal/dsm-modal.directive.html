@@ -1,6 +1,6 @@
 <div class="dsm-modal-wrapper">
     <div class="modal-header" ng-if="ctrl.hasPart('header')">
-        <span class="close" ng-click="ctrl.onClose()">&times;</span>
+        <span class="close icon-times" ng-click="ctrl.onClose()"></span>
         <ng-transclude ng-transclude-slot="header"></ng-transclude>
     </div>
     <div class="modal-body" ng-transclude="body"></div>

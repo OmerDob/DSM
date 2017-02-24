@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "dsm-icons";
+  src:url("fonts/dsm-icons.eot");
+  src:url("fonts/dsm-icons.eot?#iefix") format("embedded-opentype"),
+    url("fonts/dsm-icons.woff") format("woff"),
+    url("fonts/dsm-icons.ttf") format("truetype"),
+    url("fonts/dsm-icons.svg#dsm-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: "dsm-icons" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "dsm-icons" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  vertical-align: middle;
+}
+
+.icon-bars:before {
+  content: "\61";
+}
+.icon-exclamation-circle:before {
+  content: "\62";
+}
+.icon-plus-circle:before {
+  content: "\63";
+}
+.icon-times:before {
+  content: "\64";
+}
+.icon-times-circle:before {
+  content: "\65";
+}
+.icon-pencil:before {
+  content: "\66";
+}

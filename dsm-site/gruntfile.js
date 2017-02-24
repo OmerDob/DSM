@@ -58,6 +58,12 @@ module.exports = function (grunt) {
             index: {
                 src: ['./source/index.html'],
                 dest: './bin/index.html'
+            },
+            resources: {
+                expand: true,
+                cwd: 'resources',
+                src: '**',
+                dest: 'bin/'
             }
         }
     });
@@ -70,6 +76,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-browserify');
 
     grunt.registerTask('build', ['concat:js', 'browserify:app', 'concat:css', 'ngtemplates:app', 'notify:build']);
-    grunt.registerTask('build:full', ['concat:vendors', 'build', 'copy:index']);
+    grunt.registerTask('build:full', ['concat:vendors', 'build', 'copy:index', 'copy:resources']);
     grunt.registerTask('build:watch', ['watch:build']);
 };

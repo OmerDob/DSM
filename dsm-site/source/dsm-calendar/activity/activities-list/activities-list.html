@@ -1,6 +1,9 @@
 <div id="activitiesList" class="container">
     <div class="activities-toolbar">
-        <button type="button" class="default" ng-click="ctrl.createActivity()">New Activity</button>
+        <button type="button" class="default" ng-click="ctrl.createActivity()">
+            <span class="icon-plus-circle"></span>
+            New Activity
+        </button>
     </div>
     <div class="side-list">
         <ul>
@@ -14,8 +17,14 @@
     </div>
     <div class="activity-details" ng-if="ctrl.selectedActivity">
         <div class="activity-toolbar">
-            <button class="default" ng-click="ctrl.editActivity(ctrl.selectedActivity)">Edit</button>
-            <button class="danger" ng-click="ctrl.deleteActivity()">Delete</button>
+            <button class="default" ng-click="ctrl.editActivity(ctrl.selectedActivity)">
+                <span class="icon-pencil"></span>
+                Edit
+            </button>
+            <button class="danger" ng-click="ctrl.deleteActivity()">
+                <span class="icon-times-circle"></span>
+                Delete
+            </button>
         </div>
         <span><b>Name:</b> {{ctrl.selectedActivity.name}}</span><br>
         <span><b>Starts at:</b> {{ctrl.selectedActivity.startDate | date:'dd/MM/yyyy - HH:mm'}}</span><br>
